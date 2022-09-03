@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+
+import './App.scss';
+import {useState} from 'react';
+
 
 function App() {
+  const [count, setCount] = useState(0);
+  const handleSubstract = () => {
+    setCount(count -1)
+  }
+  const handleAddition = () => {
+     setCount(count + 1)
+  }
+  const handleReset = () => {
+     setCount(0)
+  }
+
+  let colors = "#fff";
+  if(count >= 1){
+    colors = "yellow"
+  }else if(count < 0){
+    colors = "red"
+  }else{
+    colors = "white"
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <section className='counter-sec --flex-center'>
+        <div className='container counter --card --center-all'>
+            <h1 className="--text-light">React Counter App</h1> 
+            <p className="count --my2 --text-md --text-light --fw-bold " style={{color:colors}}>{count}</p>
+            <div className='buttons'>
+                <button className="--btn --btn-danger" onClick={handleSubstract}>- Substract</button>
+                <button className="--btn" onClick={handleReset}>! Reset</button>
+                <button className="--btn --btn-success" onClick={handleAddition}>+ Add</button>
+            </div>
+        </div>
+     </section>
   );
 }
 
